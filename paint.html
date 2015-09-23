@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--important for responsiveness-->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+	<link rel="icon" href="favicon.ico"/>
+	<title>Simple Paint Program</title>
+	<!--<link href="bootstrap.min.css" rel="stylesheet"/>-->
+	<link href="paint.css" rel="stylesheet"/>
+	<script src="paint.js"></script>
+	
+</head>
+<body>
+	<h3>A Simple Paint Progam</h3>
+
+		<div class="Toolbar">
+			<span class="toolbarHeading">- Pen Colour - </span></br>
+			<img id="blackColor" src="blackColor.jpg" alt="Black Color" onclick="changeColor('rgb(0,0,0)',this)">
+			<img id="whiteColor" src="whiteColor.jpg" alt="White Color" onclick="changeColor('rgb(255,255,255)',this)">
+			<img id="yellowColor" src="yellowColor.jpg" alt="Yellow Color" onclick="changeColor('rgb(255,255,0)',this)">
+			<img id="orangeColor" src="orangeColor.jpg" alt="Orange Color" onclick="changeColor('rgb(255,102,0)',this)">
+			<img id="redColor" src="redColor.jpg" alt="Red Color" onclick="changeColor('rgb(212,21,29)',this)">
+			<img id="greenColor" src="greenColor.jpg" alt="Green Color" onclick="changeColor('rgb(131,190,61)',this)">
+			<img id="blueColor" src="blueColor.jpg" alt="Blue Color" onclick="changeColor('rgb(0,86,166)',this)">
+			<img id="purpleColor" src="purpleColor.jpg" alt="Purple Color" onclick="changeColor('rgb(202,0,204)',this)">
+			<img id="pinkColor" src="pinkColor.jpg" alt="Pink Color" onclick="changeColor('rgb(255,102,204)',this)">
+			<img id="brownColor" src="brownColor.jpg" alt="Brown Color" onclick="changeColor('rgb(153,51,0)',this)">
+		</div>	
+		<div class="Toolbar">	
+			<span class="toolbarHeading">- Line Thickness - </span><br/>
+			<img id="thinLine" src="pen_thin.gif" alt="Thin Line" onclick="changeThickness(1,this)">
+			<img id="mediumLine" src="pen_medium.gif" alt="Medium Line" onclick="changeThickness(5,this)">
+			<img id="thickLine" src="pen_thick.gif" alt="Thick Line" onclick="changeThickness(10,this)">
+		</div>
+		<div class="Toolbar">	
+			<span class="toolbarHeading">- Erase - </span><br/>
+			<img id="thinEraser" src="smallEraser.jpg" alt="Thin Eraser" onclick="erase(1,this)">
+			<img id="mediumEraser" src="mediumEraser.jpg" alt="Medium Eraser" onclick="erase(5,this)">
+			<img id="thickEraser" src="largeEraser.jpg" alt="Thick Eraser" onclick="erase(10,this)">
+		</div>
+		<div class="Toolbar">	
+			<span class="toolbarHeading">- Draw Shape - </span><br/>
+			<img id="rectangle" src="rectangle.jpg" alt="Rectangle" onclick="setShape('rectangle')">
+			<!--<img id="circle" src="circle.jpg" alt="Circle" onclick="setShape('circle')">-->
+		</div>
+		<div class="CanvasContainer">
+			<canvas id="drawingCanvas" width="500" height="300"></canvas>
+		</div>
+		<div class="Toolbar">
+			<span class="toolbarHeading">- Operations - </span><br/><br/>
+			<button onclick="saveCanvas()">Save the Canvas</button>
+			<button onclick="clearCanvas()">Clear the Canvas</button>
+			<div id="savedCopyContainer">
+				<img id="savedImageCopy"></br>
+				Right-click to save ...
+			</div>
+		</div>
+	
+</body>
+</html>
