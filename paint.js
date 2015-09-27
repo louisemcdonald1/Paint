@@ -84,17 +84,32 @@ var circleCentreY = 0;
 var radius = 0;
 var circleStartingAngle = 0;
 var circleEndingAngle = 2 * Math.PI;
+var lineLength = 0;
 
 function setShape(shapeSetting){
 	if (shapeSetting == "rectangle")
 	{
 		shape = "rectangle";
-		//alert("rectangle");
 	}
 	if (shapeSetting == "circle")
 	{
 		shape = "circle";
-		//alert("circle");
+	}
+	if (shapeSetting == "triangle")
+	{
+		shape = "triangle";
+	}
+}
+
+function getLineLength(x1, x2, y1, y2){
+	var xLength = x2 - x1;
+	var yLength = y2 - y1;
+	var lineLengthSquared = 0;
+	
+	if (!((xLength === 0) && (yLength === 0)))
+	{
+		lineLengthSquared = (xLength * xLength) + (yLength * yLength);
+		lineLength = Math.sqrt(lineLengthSquared);
 	}
 }
 
@@ -133,14 +148,32 @@ function draw(e){
 		}
 		if(shape == "circle")
 		{
-			//alert("into circle drawing code");
 			//draw a circle to the new position
-			circleCentreX = (shapeStartX + x)/2;
-			circleCentreY = (shapeStartY + y)/2;
-			radius = circleCentreX/2;
-			clearCanvas();
-			context.arc(circleCentreX, circleCentreY, radius, circleStartingAngle, circleEndingAngle);
+			
+			//find the length of the line drawn on screen
+			getLineLength(shapeStartX, x, shapeStartY, y);
+			//calculate the length of the radius
+			radius = lineLength/2;
+			//calculate the centre co-ordinates of the circle
+			circleCentreX = (shapeStartX - radius/2);
+			circleCentreY = (shapeStartY - radius/2);
+			//draw the circle
+			context.beginPath();
+			context.arc(circleCentreX + radius, circleCentreY + radius, radius, circleStartingAngle, circleEndingAngle);
+			context.closePath();
 			context.stroke();
+			//fill the circle
+			context.fill();
+		}
+		if(shape == "triangle")
+		{
+			//draw the triangle
+			context.beginPath();
+			context.moveTo(shapeStartX, shapeStartY);
+			context.lineTo(x,y);
+			context.lineTo(shapeStartX, y);
+			context.closePath();
+			context.fill();
 		}
 		
 	}
